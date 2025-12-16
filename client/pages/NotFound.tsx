@@ -1,8 +1,11 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Heart } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.error(
@@ -12,13 +15,31 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-background to-secondary/10 flex flex-col items-center justify-center px-4">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
+        <div className="mb-6">
+          <Heart className="w-16 h-16 text-primary mx-auto mb-4 opacity-50" />
+          <h1 className="text-5xl font-bold text-foreground mb-2 font-roboto">404</h1>
+          <p className="text-lg text-muted-foreground mb-8">
+            Oops! Page not found
+          </p>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Button
+            onClick={() => navigate("/")}
+            className="bg-primary hover:bg-primary/90 text-white"
+            size="lg"
+          >
+            Go to Home
+          </Button>
+          <Button
+            onClick={() => navigate(-1)}
+            variant="outline"
+            size="lg"
+          >
+            Go Back
+          </Button>
+        </div>
       </div>
     </div>
   );
