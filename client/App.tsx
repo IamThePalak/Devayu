@@ -18,6 +18,10 @@ import AppointmentsPatient from "./pages/AppointmentsPatient";
 import HealthRecords from "./pages/HealthRecords";
 import Pharmacy from "./pages/Pharmacy";
 import Profile from "./pages/Profile";
+import AppointmentsDoctor from "./pages/AppointmentsDoctor";
+import RecordsDoctor from "./pages/RecordsDoctor";
+import AppointmentsPharma from "./pages/AppointmentsPharma";
+import RecordsPharma from "./pages/RecordsPharma";
 import Placeholder from "./pages/Placeholder";
 import NotFound from "./pages/NotFound";
 
@@ -42,12 +46,12 @@ const App = () => (
             <Route path="/dashboard-pharma" element={<DashboardPharma />} />
 
             <Route path="/appointments-patient" element={<AppointmentsPatient />} />
-            <Route path="/appointments-doctor" element={<Placeholder title="Doctor Appointments" />} />
-            <Route path="/appointments-pharma" element={<Placeholder title="Pharma Appointments" />} />
+            <Route path="/appointments-doctor" element={<AppointmentsDoctor />} />
+            <Route path="/appointments-pharma" element={<AppointmentsPharma />} />
 
             <Route path="/records-patient" element={<HealthRecords />} />
-            <Route path="/records-doctor" element={<Placeholder title="Patient Records" />} />
-            <Route path="/records-pharma" element={<Placeholder title="Order History" />} />
+            <Route path="/records-doctor" element={<RecordsDoctor />} />
+            <Route path="/records-pharma" element={<RecordsPharma />} />
 
             <Route path="/pharmacy" element={<Pharmacy />} />
             <Route path="/consultations" element={<Placeholder title="Consultations" />} />
