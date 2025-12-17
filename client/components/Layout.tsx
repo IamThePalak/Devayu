@@ -1,21 +1,24 @@
 import BottomNav from "./BottomNav";
-import { useLocation } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-export default function Layout({ children }: LayoutProps) {
+export default function Layout() {
   const location = useLocation();
-  const hideNav = ["/", "/login", "/register", "/role-selection", "/splash"].includes(
-    location.pathname
-  );
+
+  const hideNav = [
+    "/",
+    "/login",
+    "/register",
+    "/role-selection",
+    "/splash",
+  ].includes(location.pathname);
 
   return (
     <div className="min-h-screen bg-background">
       <div className={hideNav ? "" : "pb-24"}>
-        {children}
+        {/* Render nested routes here */}
+        <Outlet />
       </div>
+
       {!hideNav && <BottomNav />}
     </div>
   );
