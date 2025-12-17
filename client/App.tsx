@@ -45,17 +45,32 @@ const App = () => (
             <Route path="/dashboard-doctor" element={<DashboardDoctor />} />
             <Route path="/dashboard-pharma" element={<DashboardPharma />} />
 
-            <Route path="/appointments-patient" element={<AppointmentsPatient />} />
-            <Route path="/appointments-doctor" element={<AppointmentsDoctor />} />
-            <Route path="/appointments-pharma" element={<AppointmentsPharma />} />
+            <Route
+              path="/appointments-patient"
+              element={<AppointmentsPatient />}
+            />
+            <Route
+              path="/appointments-doctor"
+              element={<AppointmentsDoctor />}
+            />
+            <Route
+              path="/appointments-pharma"
+              element={<AppointmentsPharma />}
+            />
 
             <Route path="/records-patient" element={<HealthRecords />} />
             <Route path="/records-doctor" element={<RecordsDoctor />} />
             <Route path="/records-pharma" element={<RecordsPharma />} />
 
             <Route path="/pharmacy" element={<Pharmacy />} />
-            <Route path="/consultations" element={<Placeholder title="Consultations" />} />
-            <Route path="/inventory" element={<Placeholder title="Inventory" />} />
+            <Route
+              path="/consultations"
+              element={<Placeholder title="Consultations" />}
+            />
+            <Route
+              path="/inventory"
+              element={<Placeholder title="Inventory" />}
+            />
 
             <Route path="/profile" element={<Profile />} />
 

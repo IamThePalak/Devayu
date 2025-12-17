@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Calendar, Clock, MapPin, Plus, X, Check, AlertCircle } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Plus,
+  X,
+  Check,
+  AlertCircle,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -23,11 +31,15 @@ interface Appointment {
 }
 
 export default function AppointmentsPatient() {
-  const [appointments, setAppointments] = useState<Appointment[]>(mockAppointments);
-  const [filterStatus, setFilterStatus] = useState<"all" | "upcoming" | "completed">("all");
+  const [appointments, setAppointments] =
+    useState<Appointment[]>(mockAppointments);
+  const [filterStatus, setFilterStatus] = useState<
+    "all" | "upcoming" | "completed"
+  >("all");
   const [showBooking, setShowBooking] = useState(false);
   const [showReschedule, setShowReschedule] = useState(false);
-  const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
+  const [selectedAppointment, setSelectedAppointment] =
+    useState<Appointment | null>(null);
   const [selectedDoctor, setSelectedDoctor] = useState<any>(null);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
@@ -65,8 +77,8 @@ export default function AppointmentsPatient() {
         appointments.map((apt) =>
           apt.id === selectedAppointment.id
             ? { ...apt, date: selectedDate, time: selectedTime }
-            : apt
-        )
+            : apt,
+        ),
       );
       setShowReschedule(false);
       setSelectedAppointment(null);
@@ -78,8 +90,8 @@ export default function AppointmentsPatient() {
   const handleCancelAppointment = (id: number) => {
     setAppointments(
       appointments.map((apt) =>
-        apt.id === id ? { ...apt, status: "cancelled" } : apt
-      )
+        apt.id === id ? { ...apt, status: "cancelled" } : apt,
+      ),
     );
   };
 
@@ -117,7 +129,9 @@ export default function AppointmentsPatient() {
           <h1 className="text-3xl font-bold text-foreground font-roboto mb-2">
             My Appointments
           </h1>
-          <p className="text-muted-foreground">Manage your medical appointments</p>
+          <p className="text-muted-foreground">
+            Manage your medical appointments
+          </p>
         </div>
 
         {/* Book New Appointment Button */}
@@ -169,7 +183,7 @@ export default function AppointmentsPatient() {
                   </div>
                   <span
                     className={`text-xs px-3 py-1 rounded-full capitalize ${getStatusBadgeColor(
-                      appointment.status
+                      appointment.status,
                     )}`}
                   >
                     {appointment.status}
@@ -244,7 +258,9 @@ export default function AppointmentsPatient() {
           <div className="space-y-6">
             {/* Doctor Selection */}
             <div>
-              <h4 className="font-semibold text-foreground mb-3">Select Doctor</h4>
+              <h4 className="font-semibold text-foreground mb-3">
+                Select Doctor
+              </h4>
               <div className="space-y-2">
                 {mockDoctors.map((doctor) => (
                   <div
@@ -258,7 +274,9 @@ export default function AppointmentsPatient() {
                   >
                     <div className="flex items-center gap-3">
                       <div>
-                        <p className="font-medium text-foreground">{doctor.name}</p>
+                        <p className="font-medium text-foreground">
+                          {doctor.name}
+                        </p>
                         <p className="text-sm text-muted-foreground">
                           {doctor.specialization}
                         </p>
@@ -346,7 +364,8 @@ export default function AppointmentsPatient() {
           <DialogHeader>
             <DialogTitle>Reschedule Appointment</DialogTitle>
             <DialogDescription>
-              {selectedAppointment?.doctorName} - {selectedAppointment?.department}
+              {selectedAppointment?.doctorName} -{" "}
+              {selectedAppointment?.department}
             </DialogDescription>
           </DialogHeader>
 

@@ -70,8 +70,11 @@ export default function AppointmentsDoctor() {
     },
   ]);
 
-  const [filterStatus, setFilterStatus] = useState<"all" | "pending" | "confirmed" | "completed">("all");
-  const [selectedAppointment, setSelectedAppointment] = useState<DoctorAppointment | null>(null);
+  const [filterStatus, setFilterStatus] = useState<
+    "all" | "pending" | "confirmed" | "completed"
+  >("all");
+  const [selectedAppointment, setSelectedAppointment] =
+    useState<DoctorAppointment | null>(null);
   const [showDetails, setShowDetails] = useState(false);
   const [showConsultation, setShowConsultation] = useState(false);
   const [consultationNotes, setConsultationNotes] = useState("");
@@ -84,24 +87,26 @@ export default function AppointmentsDoctor() {
   const handleConfirm = (id: number) => {
     setAppointments(
       appointments.map((apt) =>
-        apt.id === id ? { ...apt, status: "confirmed" } : apt
-      )
+        apt.id === id ? { ...apt, status: "confirmed" } : apt,
+      ),
     );
   };
 
   const handleCancel = (id: number) => {
     setAppointments(
       appointments.map((apt) =>
-        apt.id === id ? { ...apt, status: "cancelled" } : apt
-      )
+        apt.id === id ? { ...apt, status: "cancelled" } : apt,
+      ),
     );
   };
 
   const handleComplete = (id: number) => {
     setAppointments(
       appointments.map((apt) =>
-        apt.id === id ? { ...apt, status: "completed", notes: consultationNotes } : apt
-      )
+        apt.id === id
+          ? { ...apt, status: "completed", notes: consultationNotes }
+          : apt,
+      ),
     );
     setShowConsultation(false);
     setConsultationNotes("");
@@ -123,7 +128,7 @@ export default function AppointmentsDoctor() {
   };
 
   const todayAppointments = appointments.filter(
-    (apt) => apt.status !== "cancelled"
+    (apt) => apt.status !== "cancelled",
   ).length;
 
   return (
@@ -134,14 +139,18 @@ export default function AppointmentsDoctor() {
           <h1 className="text-3xl font-bold text-foreground font-roboto mb-2">
             Appointments
           </h1>
-          <p className="text-muted-foreground">Manage your patient consultations</p>
+          <p className="text-muted-foreground">
+            Manage your patient consultations
+          </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3 mb-6">
           <div className="bg-card border border-border rounded-lg p-4 shadow">
             <p className="text-xs text-muted-foreground mb-1">Today</p>
-            <p className="text-2xl font-bold text-primary">{todayAppointments}</p>
+            <p className="text-2xl font-bold text-primary">
+              {todayAppointments}
+            </p>
           </div>
           <div className="bg-card border border-border rounded-lg p-4 shadow">
             <p className="text-xs text-muted-foreground mb-1">Pending</p>
@@ -195,12 +204,13 @@ export default function AppointmentsDoctor() {
                       </h3>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      Age: {appointment.patientAge} • {appointment.appointmentType}
+                      Age: {appointment.patientAge} •{" "}
+                      {appointment.appointmentType}
                     </p>
                   </div>
                   <span
                     className={`text-xs px-3 py-1 rounded-full capitalize ${getStatusBadgeColor(
-                      appointment.status
+                      appointment.status,
                     )}`}
                   >
                     {appointment.status}
@@ -274,7 +284,8 @@ export default function AppointmentsDoctor() {
                     </>
                   )}
 
-                  {(appointment.status === "confirmed" || appointment.status === "completed") && (
+                  {(appointment.status === "confirmed" ||
+                    appointment.status === "completed") && (
                     <Button
                       size="sm"
                       variant="outline"
@@ -300,7 +311,8 @@ export default function AppointmentsDoctor() {
           <DialogHeader>
             <DialogTitle>Complete Consultation</DialogTitle>
             <DialogDescription>
-              {selectedAppointment?.patientName} - {selectedAppointment?.appointmentType}
+              {selectedAppointment?.patientName} -{" "}
+              {selectedAppointment?.appointmentType}
             </DialogDescription>
           </DialogHeader>
 
@@ -373,7 +385,8 @@ export default function AppointmentsDoctor() {
                 <div>
                   <p className="text-xs text-muted-foreground">Age / Phone</p>
                   <p className="font-semibold text-foreground">
-                    {selectedAppointment.patientAge} / {selectedAppointment.patientPhone}
+                    {selectedAppointment.patientAge} /{" "}
+                    {selectedAppointment.patientPhone}
                   </p>
                 </div>
                 <div>

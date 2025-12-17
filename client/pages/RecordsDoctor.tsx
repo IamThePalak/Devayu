@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { User, Search, Plus, FileText, Calendar, AlertCircle } from "lucide-react";
+import {
+  User,
+  Search,
+  Plus,
+  FileText,
+  Calendar,
+  AlertCircle,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -58,7 +65,7 @@ export default function RecordsDoctor() {
   const filteredPatients = patients.filter(
     (patient) =>
       patient.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      patient.phone.includes(searchQuery)
+      patient.phone.includes(searchQuery),
   );
 
   const handleSelectPatient = (patient: any) => {
@@ -97,13 +104,18 @@ export default function RecordsDoctor() {
           <h1 className="text-3xl font-bold text-foreground font-roboto mb-2">
             Patient Records
           </h1>
-          <p className="text-muted-foreground">Manage patient medical records and notes</p>
+          <p className="text-muted-foreground">
+            Manage patient medical records and notes
+          </p>
         </div>
 
         {/* Search */}
         <div className="mb-6">
           <div className="relative">
-            <Search className="absolute left-3 top-3 text-muted-foreground" size={20} />
+            <Search
+              className="absolute left-3 top-3 text-muted-foreground"
+              size={20}
+            />
             <Input
               type="text"
               placeholder="Search patients by name or phone..."
@@ -148,11 +160,15 @@ export default function RecordsDoctor() {
                 <div className="grid grid-cols-2 gap-3 mb-3">
                   <div className="text-sm">
                     <p className="text-muted-foreground text-xs">Last Visit</p>
-                    <p className="font-medium text-foreground">{patient.lastVisit}</p>
+                    <p className="font-medium text-foreground">
+                      {patient.lastVisit}
+                    </p>
                   </div>
                   <div className="text-sm">
                     <p className="text-muted-foreground text-xs">Phone</p>
-                    <p className="font-medium text-foreground">{patient.phone}</p>
+                    <p className="font-medium text-foreground">
+                      {patient.phone}
+                    </p>
                   </div>
                 </div>
 
@@ -169,9 +185,7 @@ export default function RecordsDoctor() {
       <Dialog open={showPatientNotes} onOpenChange={setShowPatientNotes}>
         <DialogContent className="max-w-2xl max-h-96 overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>
-              Medical Records - {selectedPatient?.name}
-            </DialogTitle>
+            <DialogTitle>Medical Records - {selectedPatient?.name}</DialogTitle>
           </DialogHeader>
 
           <div className="space-y-4">
@@ -214,7 +228,9 @@ export default function RecordsDoctor() {
 
             {/* Notes History */}
             <div className="space-y-3">
-              <h3 className="font-semibold text-foreground">Notes & Diagnosis</h3>
+              <h3 className="font-semibold text-foreground">
+                Notes & Diagnosis
+              </h3>
               {patientNotes.map((note) => (
                 <div
                   key={note.id}
@@ -222,7 +238,9 @@ export default function RecordsDoctor() {
                 >
                   <div className="flex items-start justify-between">
                     <div>
-                      <p className="font-semibold text-foreground">{note.title}</p>
+                      <p className="font-semibold text-foreground">
+                        {note.title}
+                      </p>
                       <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
                         <Calendar size={14} />
                         {note.date}
@@ -231,19 +249,27 @@ export default function RecordsDoctor() {
                     <FileText className="text-primary" size={20} />
                   </div>
 
-                  <p className="text-sm text-muted-foreground">{note.content}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {note.content}
+                  </p>
 
                   {note.diagnosis && (
                     <div className="bg-blue-50 border border-blue-200 rounded p-2">
-                      <p className="text-xs text-blue-700 font-semibold">Diagnosis</p>
+                      <p className="text-xs text-blue-700 font-semibold">
+                        Diagnosis
+                      </p>
                       <p className="text-sm text-blue-900">{note.diagnosis}</p>
                     </div>
                   )}
 
                   {note.prescription && (
                     <div className="bg-green-50 border border-green-200 rounded p-2">
-                      <p className="text-xs text-green-700 font-semibold">Prescription</p>
-                      <p className="text-sm text-green-900">{note.prescription}</p>
+                      <p className="text-xs text-green-700 font-semibold">
+                        Prescription
+                      </p>
+                      <p className="text-sm text-green-900">
+                        {note.prescription}
+                      </p>
                     </div>
                   )}
 
@@ -285,7 +311,9 @@ export default function RecordsDoctor() {
               <Input
                 placeholder="e.g., Consultation - Hypertension"
                 value={newNote.title}
-                onChange={(e) => setNewNote({ ...newNote, title: e.target.value })}
+                onChange={(e) =>
+                  setNewNote({ ...newNote, title: e.target.value })
+                }
               />
             </div>
 
@@ -296,7 +324,9 @@ export default function RecordsDoctor() {
               <textarea
                 placeholder="Detailed clinical observations..."
                 value={newNote.content}
-                onChange={(e) => setNewNote({ ...newNote, content: e.target.value })}
+                onChange={(e) =>
+                  setNewNote({ ...newNote, content: e.target.value })
+                }
                 className="w-full border border-border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-primary"
                 rows={3}
               />
@@ -309,7 +339,9 @@ export default function RecordsDoctor() {
               <Input
                 placeholder="Primary diagnosis"
                 value={newNote.diagnosis}
-                onChange={(e) => setNewNote({ ...newNote, diagnosis: e.target.value })}
+                onChange={(e) =>
+                  setNewNote({ ...newNote, diagnosis: e.target.value })
+                }
               />
             </div>
 
@@ -333,7 +365,9 @@ export default function RecordsDoctor() {
               <Input
                 type="date"
                 value={newNote.followUp}
-                onChange={(e) => setNewNote({ ...newNote, followUp: e.target.value })}
+                onChange={(e) =>
+                  setNewNote({ ...newNote, followUp: e.target.value })
+                }
               />
             </div>
 

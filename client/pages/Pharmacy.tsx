@@ -34,7 +34,7 @@ export default function Pharmacy() {
   const filteredMedicines = medicines.filter(
     (med) =>
       med.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      med.brand.toLowerCase().includes(searchQuery.toLowerCase())
+      med.brand.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   const addToCart = (medicine: any) => {
@@ -44,8 +44,8 @@ export default function Pharmacy() {
         cart.map((item) =>
           item.medicineId === medicine.id
             ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
+            : item,
+        ),
       );
     } else {
       setCart([
@@ -70,19 +70,27 @@ export default function Pharmacy() {
     } else {
       setCart(
         cart.map((item) =>
-          item.medicineId === medicineId ? { ...item, quantity } : item
-        )
+          item.medicineId === medicineId ? { ...item, quantity } : item,
+        ),
       );
     }
   };
 
-  const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const cartTotal = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
   const shippingCost = cartTotal > 500 ? 0 : 50;
 
   const handleCheckout = () => {
-    if (shippingInfo.address && shippingInfo.city && shippingInfo.pincode && shippingInfo.phone) {
+    if (
+      shippingInfo.address &&
+      shippingInfo.city &&
+      shippingInfo.pincode &&
+      shippingInfo.phone
+    ) {
       alert(
-        `Order placed! Total: $${(cartTotal + shippingCost).toFixed(2)}\nYour medicine will be delivered in 2-3 business days.`
+        `Order placed! Total: $${(cartTotal + shippingCost).toFixed(2)}\nYour medicine will be delivered in 2-3 business days.`,
       );
       setCart([]);
       setShowCheckout(false);
@@ -122,7 +130,10 @@ export default function Pharmacy() {
         {/* Search */}
         <div className="mb-6">
           <div className="relative">
-            <Search className="absolute left-3 top-3 text-muted-foreground" size={20} />
+            <Search
+              className="absolute left-3 top-3 text-muted-foreground"
+              size={20}
+            />
             <Input
               type="text"
               placeholder="Search medicines by name or brand..."
@@ -150,16 +161,24 @@ export default function Pharmacy() {
                   <h3 className="text-lg font-semibold text-foreground">
                     {medicine.name}
                   </h3>
-                  <p className="text-sm text-muted-foreground">{medicine.brand}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {medicine.brand}
+                  </p>
                 </div>
 
                 <div className="mb-3 pb-3 border-b border-border">
-                  <p className="text-sm text-muted-foreground mb-1">Manufacturer</p>
-                  <p className="text-xs text-foreground">{medicine.manufacturer}</p>
+                  <p className="text-sm text-muted-foreground mb-1">
+                    Manufacturer
+                  </p>
+                  <p className="text-xs text-foreground">
+                    {medicine.manufacturer}
+                  </p>
                 </div>
 
                 <div className="flex justify-between items-center mb-4">
-                  <p className="text-2xl font-bold text-primary">{medicine.price}</p>
+                  <p className="text-2xl font-bold text-primary">
+                    {medicine.price}
+                  </p>
                   <span
                     className={`text-xs px-2 py-1 rounded ${
                       medicine.availability === "In Stock"
@@ -210,7 +229,9 @@ export default function Pharmacy() {
                       className="flex justify-between items-center p-3 bg-muted rounded-lg"
                     >
                       <div className="flex-1">
-                        <p className="font-medium text-foreground">{item.name}</p>
+                        <p className="font-medium text-foreground">
+                          {item.name}
+                        </p>
                         <p className="text-sm text-muted-foreground">
                           ${item.price.toFixed(2)}
                         </p>
@@ -219,7 +240,9 @@ export default function Pharmacy() {
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => updateQuantity(item.medicineId, item.quantity - 1)}
+                          onClick={() =>
+                            updateQuantity(item.medicineId, item.quantity - 1)
+                          }
                         >
                           <Minus size={16} />
                         </Button>
@@ -229,7 +252,9 @@ export default function Pharmacy() {
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => updateQuantity(item.medicineId, item.quantity + 1)}
+                          onClick={() =>
+                            updateQuantity(item.medicineId, item.quantity + 1)
+                          }
                         >
                           <Plus size={16} />
                         </Button>
@@ -254,15 +279,21 @@ export default function Pharmacy() {
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Shipping:</span>
                     <span className="font-medium text-green-600">
-                      {shippingCost === 0 ? "FREE" : `$${shippingCost.toFixed(2)}`}
+                      {shippingCost === 0
+                        ? "FREE"
+                        : `$${shippingCost.toFixed(2)}`}
                     </span>
                   </div>
                   {shippingCost === 0 && (
-                    <p className="text-xs text-green-600">Free shipping on orders over $500</p>
+                    <p className="text-xs text-green-600">
+                      Free shipping on orders over $500
+                    </p>
                   )}
                   <div className="flex justify-between text-lg font-bold pt-2 border-t border-border">
                     <span>Total:</span>
-                    <span className="text-primary">${(cartTotal + shippingCost).toFixed(2)}</span>
+                    <span className="text-primary">
+                      ${(cartTotal + shippingCost).toFixed(2)}
+                    </span>
                   </div>
                 </div>
 
@@ -333,7 +364,10 @@ export default function Pharmacy() {
                   placeholder="10001"
                   value={shippingInfo.pincode}
                   onChange={(e) =>
-                    setShippingInfo({ ...shippingInfo, pincode: e.target.value })
+                    setShippingInfo({
+                      ...shippingInfo,
+                      pincode: e.target.value,
+                    })
                   }
                 />
               </div>
@@ -353,15 +387,21 @@ export default function Pharmacy() {
             </div>
 
             <div className="bg-muted p-3 rounded-lg">
-              <p className="text-sm text-muted-foreground mb-2">Order Summary:</p>
+              <p className="text-sm text-muted-foreground mb-2">
+                Order Summary:
+              </p>
               <div className="text-sm space-y-1">
                 <div className="flex justify-between">
-                  <span>Items: {cart.reduce((sum, item) => sum + item.quantity, 0)}</span>
+                  <span>
+                    Items: {cart.reduce((sum, item) => sum + item.quantity, 0)}
+                  </span>
                   <span>${cartTotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping:</span>
-                  <span>{shippingCost === 0 ? "FREE" : `$${shippingCost}`}</span>
+                  <span>
+                    {shippingCost === 0 ? "FREE" : `$${shippingCost}`}
+                  </span>
                 </div>
                 <div className="flex justify-between font-bold pt-2 border-t border-border">
                   <span>Total:</span>

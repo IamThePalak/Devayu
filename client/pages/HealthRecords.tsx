@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Activity, TrendingUp, TrendingDown, Plus, Calendar } from "lucide-react";
+import {
+  Activity,
+  TrendingUp,
+  TrendingDown,
+  Plus,
+  Calendar,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -91,13 +97,19 @@ export default function HealthRecords() {
     }
   };
 
-  const getTrendIcon = (current: number, previous: number, isHigherBetter: boolean) => {
+  const getTrendIcon = (
+    current: number,
+    previous: number,
+    isHigherBetter: boolean,
+  ) => {
     if (current === previous) return null;
     const isUp = current > previous;
     const isBetter = isHigherBetter ? isUp : !isUp;
 
     return (
-      <div className={`flex items-center gap-1 ${isBetter ? "text-green-600" : "text-red-600"}`}>
+      <div
+        className={`flex items-center gap-1 ${isBetter ? "text-green-600" : "text-red-600"}`}
+      >
         {isBetter ? <TrendingUp size={16} /> : <TrendingDown size={16} />}
         <span className="text-xs">
           {Math.abs(((current - previous) / previous) * 100).toFixed(1)}%
@@ -117,7 +129,9 @@ export default function HealthRecords() {
           <h1 className="text-3xl font-bold text-foreground font-roboto mb-2">
             Health Records
           </h1>
-          <p className="text-muted-foreground">Track and manage your health vitals</p>
+          <p className="text-muted-foreground">
+            Track and manage your health vitals
+          </p>
         </div>
 
         {/* Add Record Button */}
@@ -132,17 +146,21 @@ export default function HealthRecords() {
         {/* Latest Vitals Summary */}
         {latestRecord && (
           <div className="mb-8">
-            <h2 className="text-lg font-semibold text-foreground mb-4">Latest Vitals</h2>
+            <h2 className="text-lg font-semibold text-foreground mb-4">
+              Latest Vitals
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {/* Blood Pressure */}
               <div className="bg-card border border-border rounded-lg p-4 shadow">
                 <div className="flex justify-between items-start mb-2">
-                  <p className="text-sm text-muted-foreground">Blood Pressure</p>
+                  <p className="text-sm text-muted-foreground">
+                    Blood Pressure
+                  </p>
                   {previousRecord &&
                     getTrendIcon(
                       parseInt(latestRecord.bloodPressure.split("/")[0]),
                       parseInt(previousRecord.bloodPressure.split("/")[0]),
-                      false
+                      false,
                     )}
                 </div>
                 <p className="text-2xl font-bold text-primary">
@@ -172,21 +190,29 @@ export default function HealthRecords() {
                 <div className="flex justify-between items-start mb-2">
                   <p className="text-sm text-muted-foreground">Heart Rate</p>
                 </div>
-                <p className="text-2xl font-bold text-primary">{latestRecord.heartRate}</p>
+                <p className="text-2xl font-bold text-primary">
+                  {latestRecord.heartRate}
+                </p>
                 <p className="text-xs text-muted-foreground mt-1">bpm</p>
               </div>
 
               {/* Weight */}
               <div className="bg-card border border-border rounded-lg p-4 shadow">
                 <p className="text-sm text-muted-foreground mb-2">Weight</p>
-                <p className="text-2xl font-bold text-primary">{latestRecord.weight}</p>
+                <p className="text-2xl font-bold text-primary">
+                  {latestRecord.weight}
+                </p>
                 <p className="text-xs text-muted-foreground mt-1">kg</p>
               </div>
 
               {/* Temperature */}
               <div className="bg-card border border-border rounded-lg p-4 shadow">
-                <p className="text-sm text-muted-foreground mb-2">Temperature</p>
-                <p className="text-2xl font-bold text-primary">{latestRecord.temperature}</p>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Temperature
+                </p>
+                <p className="text-2xl font-bold text-primary">
+                  {latestRecord.temperature}
+                </p>
               </div>
 
               {/* Last Updated */}
@@ -195,14 +221,18 @@ export default function HealthRecords() {
                   <Calendar size={16} className="text-muted-foreground" />
                   <p className="text-sm text-muted-foreground">Last Updated</p>
                 </div>
-                <p className="text-lg font-bold text-foreground">{latestRecord.date}</p>
+                <p className="text-lg font-bold text-foreground">
+                  {latestRecord.date}
+                </p>
               </div>
             </div>
           </div>
         )}
 
         {/* Medical History */}
-        <h2 className="text-lg font-semibold text-foreground mb-4">Records History</h2>
+        <h2 className="text-lg font-semibold text-foreground mb-4">
+          Records History
+        </h2>
         <div className="space-y-4">
           {records.map((record) => (
             <div
@@ -213,10 +243,14 @@ export default function HealthRecords() {
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <Calendar size={16} className="text-muted-foreground" />
-                    <p className="font-semibold text-foreground">{record.date}</p>
+                    <p className="font-semibold text-foreground">
+                      {record.date}
+                    </p>
                   </div>
                   {record.notes && (
-                    <p className="text-sm text-muted-foreground">{record.notes}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {record.notes}
+                    </p>
                   )}
                 </div>
                 <Activity className="text-primary" size={20} />
@@ -224,20 +258,34 @@ export default function HealthRecords() {
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div>
-                  <p className="text-xs text-muted-foreground mb-1">Blood Pressure</p>
-                  <p className="font-semibold text-foreground">{record.bloodPressure}</p>
+                  <p className="text-xs text-muted-foreground mb-1">
+                    Blood Pressure
+                  </p>
+                  <p className="font-semibold text-foreground">
+                    {record.bloodPressure}
+                  </p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground mb-1">Sugar Level</p>
-                  <p className="font-semibold text-foreground">{record.sugarLevel}</p>
+                  <p className="text-xs text-muted-foreground mb-1">
+                    Sugar Level
+                  </p>
+                  <p className="font-semibold text-foreground">
+                    {record.sugarLevel}
+                  </p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground mb-1">Heart Rate</p>
-                  <p className="font-semibold text-foreground">{record.heartRate} bpm</p>
+                  <p className="text-xs text-muted-foreground mb-1">
+                    Heart Rate
+                  </p>
+                  <p className="font-semibold text-foreground">
+                    {record.heartRate} bpm
+                  </p>
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground mb-1">Weight</p>
-                  <p className="font-semibold text-foreground">{record.weight} kg</p>
+                  <p className="font-semibold text-foreground">
+                    {record.weight} kg
+                  </p>
                 </div>
               </div>
             </div>
@@ -254,11 +302,15 @@ export default function HealthRecords() {
 
           <div className="space-y-4">
             <div>
-              <label className="block font-semibold text-foreground mb-2">Date</label>
+              <label className="block font-semibold text-foreground mb-2">
+                Date
+              </label>
               <Input
                 type="date"
                 value={newRecord.date}
-                onChange={(e) => setNewRecord({ ...newRecord, date: e.target.value })}
+                onChange={(e) =>
+                  setNewRecord({ ...newRecord, date: e.target.value })
+                }
               />
             </div>
 
@@ -332,11 +384,15 @@ export default function HealthRecords() {
             </div>
 
             <div>
-              <label className="block font-semibold text-foreground mb-2">Notes</label>
+              <label className="block font-semibold text-foreground mb-2">
+                Notes
+              </label>
               <textarea
                 placeholder="Any additional notes..."
                 value={newRecord.notes}
-                onChange={(e) => setNewRecord({ ...newRecord, notes: e.target.value })}
+                onChange={(e) =>
+                  setNewRecord({ ...newRecord, notes: e.target.value })
+                }
                 className="w-full border border-border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-primary"
                 rows={2}
               />

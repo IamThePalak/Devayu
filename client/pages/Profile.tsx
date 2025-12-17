@@ -102,7 +102,9 @@ export default function Profile() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-3xl font-bold text-foreground font-roboto">Profile</h1>
+            <h1 className="text-3xl font-bold text-foreground font-roboto">
+              Profile
+            </h1>
             {!isEditing && (
               <Button
                 onClick={() => setIsEditing(true)}
@@ -125,7 +127,9 @@ export default function Profile() {
                 <h2 className="text-2xl font-bold text-foreground font-roboto">
                   {profile.fullName}
                 </h2>
-                <span className={`inline-block mt-2 text-xs px-3 py-1 rounded-full capitalize ${getRoleBadgeColor(profile.role)}`}>
+                <span
+                  className={`inline-block mt-2 text-xs px-3 py-1 rounded-full capitalize ${getRoleBadgeColor(profile.role)}`}
+                >
                   {profile.role}
                 </span>
               </div>
@@ -143,7 +147,10 @@ export default function Profile() {
                       type="email"
                       value={editedProfile.email}
                       onChange={(e) =>
-                        setEditedProfile({ ...editedProfile, email: e.target.value })
+                        setEditedProfile({
+                          ...editedProfile,
+                          email: e.target.value,
+                        })
                       }
                       className="mt-1"
                     />
@@ -163,7 +170,10 @@ export default function Profile() {
                       type="tel"
                       value={editedProfile.phone}
                       onChange={(e) =>
-                        setEditedProfile({ ...editedProfile, phone: e.target.value })
+                        setEditedProfile({
+                          ...editedProfile,
+                          phone: e.target.value,
+                        })
                       }
                       className="mt-1"
                     />
@@ -183,7 +193,10 @@ export default function Profile() {
                       type="text"
                       value={editedProfile.fullName}
                       onChange={(e) =>
-                        setEditedProfile({ ...editedProfile, fullName: e.target.value })
+                        setEditedProfile({
+                          ...editedProfile,
+                          fullName: e.target.value,
+                        })
                       }
                       className="mt-1"
                     />
@@ -331,9 +344,7 @@ export default function Profile() {
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Change Password</DialogTitle>
-            <DialogDescription>
-              Enter your new password below
-            </DialogDescription>
+            <DialogDescription>Enter your new password below</DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4">
@@ -361,9 +372,13 @@ export default function Profile() {
               />
             </div>
 
-            {newPassword && confirmPassword && newPassword !== confirmPassword && (
-              <p className="text-xs text-destructive">Passwords do not match</p>
-            )}
+            {newPassword &&
+              confirmPassword &&
+              newPassword !== confirmPassword && (
+                <p className="text-xs text-destructive">
+                  Passwords do not match
+                </p>
+              )}
 
             {newPassword && newPassword.length < 6 && (
               <p className="text-xs text-yellow-600">
@@ -404,16 +419,19 @@ export default function Profile() {
       <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-destructive">Delete Account</DialogTitle>
+            <DialogTitle className="text-destructive">
+              Delete Account
+            </DialogTitle>
             <DialogDescription>
-              This action cannot be undone. All your data will be permanently deleted.
+              This action cannot be undone. All your data will be permanently
+              deleted.
             </DialogDescription>
           </DialogHeader>
 
           <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4 mb-4">
             <p className="text-sm text-destructive">
-              ⚠️ You are about to delete your account permanently. Please confirm if you
-              want to proceed.
+              ⚠️ You are about to delete your account permanently. Please
+              confirm if you want to proceed.
             </p>
           </div>
 

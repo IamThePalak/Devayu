@@ -36,7 +36,9 @@ interface PharmaOrder {
 
 export default function AppointmentsPharma() {
   const [orders, setOrders] = useState<PharmaOrder[]>(mockOrders);
-  const [filterStatus, setFilterStatus] = useState<"all" | "pending" | "shipped" | "delivered">("all");
+  const [filterStatus, setFilterStatus] = useState<
+    "all" | "pending" | "shipped" | "delivered"
+  >("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedOrder, setSelectedOrder] = useState<PharmaOrder | null>(null);
   const [showOrderDetails, setShowOrderDetails] = useState(false);
@@ -52,7 +54,7 @@ export default function AppointmentsPharma() {
     (order) =>
       order.patientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      order.medicineName.toLowerCase().includes(searchQuery.toLowerCase())
+      order.medicineName.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   const handleMarkShipped = (orderId: string) => {
@@ -64,8 +66,8 @@ export default function AppointmentsPharma() {
               status: "shipped",
               trackingNumber: `TRK${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
             }
-          : order
-      )
+          : order,
+      ),
     );
     setShowShipment(false);
     setTrackingNumber("");
@@ -74,16 +76,16 @@ export default function AppointmentsPharma() {
   const handleMarkDelivered = (orderId: string) => {
     setOrders(
       orders.map((order) =>
-        order.id === orderId ? { ...order, status: "delivered" } : order
-      )
+        order.id === orderId ? { ...order, status: "delivered" } : order,
+      ),
     );
   };
 
   const handleCancelOrder = (orderId: string) => {
     setOrders(
       orders.map((order) =>
-        order.id === orderId ? { ...order, status: "cancelled" } : order
-      )
+        order.id === orderId ? { ...order, status: "cancelled" } : order,
+      ),
     );
   };
 
@@ -130,7 +132,9 @@ export default function AppointmentsPharma() {
           <h1 className="text-3xl font-bold text-foreground font-roboto mb-2">
             Orders
           </h1>
-          <p className="text-muted-foreground">Manage patient medicine orders</p>
+          <p className="text-muted-foreground">
+            Manage patient medicine orders
+          </p>
         </div>
 
         {/* Stats */}
@@ -141,7 +145,9 @@ export default function AppointmentsPharma() {
           </div>
           <div className="bg-card border border-border rounded-lg p-4 shadow">
             <p className="text-xs text-muted-foreground mb-1">Pending</p>
-            <p className="text-2xl font-bold text-yellow-600">{stats.pending}</p>
+            <p className="text-2xl font-bold text-yellow-600">
+              {stats.pending}
+            </p>
           </div>
           <div className="bg-card border border-border rounded-lg p-4 shadow">
             <p className="text-xs text-muted-foreground mb-1">Shipped</p>
@@ -149,7 +155,9 @@ export default function AppointmentsPharma() {
           </div>
           <div className="bg-card border border-border rounded-lg p-4 shadow">
             <p className="text-xs text-muted-foreground mb-1">Delivered</p>
-            <p className="text-2xl font-bold text-green-600">{stats.delivered}</p>
+            <p className="text-2xl font-bold text-green-600">
+              {stats.delivered}
+            </p>
           </div>
         </div>
 
@@ -209,7 +217,7 @@ export default function AppointmentsPharma() {
                   </div>
                   <span
                     className={`text-xs px-3 py-1 rounded-full capitalize ${getStatusBadgeColor(
-                      order.status
+                      order.status,
                     )}`}
                   >
                     {order.status}
@@ -218,12 +226,20 @@ export default function AppointmentsPharma() {
 
                 <div className="grid grid-cols-2 gap-3 mb-4 pb-4 border-b border-border">
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">Medicine</p>
-                    <p className="font-medium text-foreground">{order.medicineName}</p>
+                    <p className="text-xs text-muted-foreground mb-1">
+                      Medicine
+                    </p>
+                    <p className="font-medium text-foreground">
+                      {order.medicineName}
+                    </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">Quantity</p>
-                    <p className="font-medium text-foreground">{order.quantity} units</p>
+                    <p className="text-xs text-muted-foreground mb-1">
+                      Quantity
+                    </p>
+                    <p className="font-medium text-foreground">
+                      {order.quantity} units
+                    </p>
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground mb-1">Date</p>
@@ -231,7 +247,9 @@ export default function AppointmentsPharma() {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground mb-1">Amount</p>
-                    <p className="font-medium text-primary">{order.totalAmount}</p>
+                    <p className="font-medium text-primary">
+                      {order.totalAmount}
+                    </p>
                   </div>
                 </div>
 
@@ -309,12 +327,20 @@ export default function AppointmentsPharma() {
                   <span className="font-semibold">{selectedOrder.id}</span>
                 </p>
                 <p>
-                  <span className="text-muted-foreground text-sm">Patient:</span>{" "}
-                  <span className="font-semibold">{selectedOrder.patientName}</span>
+                  <span className="text-muted-foreground text-sm">
+                    Patient:
+                  </span>{" "}
+                  <span className="font-semibold">
+                    {selectedOrder.patientName}
+                  </span>
                 </p>
                 <p>
-                  <span className="text-muted-foreground text-sm">Medicine:</span>{" "}
-                  <span className="font-semibold">{selectedOrder.medicineName}</span>
+                  <span className="text-muted-foreground text-sm">
+                    Medicine:
+                  </span>{" "}
+                  <span className="font-semibold">
+                    {selectedOrder.medicineName}
+                  </span>
                 </p>
               </div>
 
@@ -362,7 +388,9 @@ export default function AppointmentsPharma() {
               <div className="bg-muted p-4 rounded-lg space-y-3">
                 <div>
                   <p className="text-xs text-muted-foreground">Order ID</p>
-                  <p className="font-semibold text-foreground">{selectedOrder.id}</p>
+                  <p className="font-semibold text-foreground">
+                    {selectedOrder.id}
+                  </p>
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Patient Name</p>
@@ -384,7 +412,9 @@ export default function AppointmentsPharma() {
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Date Ordered</p>
-                  <p className="font-semibold text-foreground">{selectedOrder.date}</p>
+                  <p className="font-semibold text-foreground">
+                    {selectedOrder.date}
+                  </p>
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Total Amount</p>
@@ -392,12 +422,17 @@ export default function AppointmentsPharma() {
                     {selectedOrder.totalAmount}
                   </p>
                 </div>
-                {selectedOrder.status === "shipped" && selectedOrder.trackingNumber && (
-                  <div className="bg-blue-50 border border-blue-200 rounded p-2">
-                    <p className="text-xs text-blue-700 font-semibold">Tracking</p>
-                    <p className="text-sm text-blue-900">{selectedOrder.trackingNumber}</p>
-                  </div>
-                )}
+                {selectedOrder.status === "shipped" &&
+                  selectedOrder.trackingNumber && (
+                    <div className="bg-blue-50 border border-blue-200 rounded p-2">
+                      <p className="text-xs text-blue-700 font-semibold">
+                        Tracking
+                      </p>
+                      <p className="text-sm text-blue-900">
+                        {selectedOrder.trackingNumber}
+                      </p>
+                    </div>
+                  )}
               </div>
 
               <Button
