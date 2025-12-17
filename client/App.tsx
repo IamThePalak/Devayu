@@ -1,7 +1,7 @@
 import "./global.css";
 
 import React from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -11,7 +11,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 import Layout from "./components/Layout";
 
-// Pages
+// Pages (EXACT NAMES AS IN YOUR FOLDER)
 import Splash from "./pages/Splash";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -98,7 +98,7 @@ function App() {
   );
 }
 
-/* ---------------- RENDER (ONLY ONCE) ---------------- */
+/* ---------------- RENDER (NO main.tsx) ---------------- */
 
 const container = document.getElementById("root");
 
@@ -106,10 +106,10 @@ if (!container) {
   throw new Error("Root container not found");
 }
 
-createRoot(container).render(
+ReactDOM.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
+  container
 );
-
 
