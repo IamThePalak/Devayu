@@ -1,15 +1,15 @@
 import "./global.css";
 
-import React from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
-// ---------------- PAGES ----------------
+import Layout from "./components/Layout";
+
+// Pages
 import Splash from "./pages/Splash";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -32,21 +32,9 @@ import Profile from "./pages/Profile";
 import Placeholder from "./pages/Placeholder";
 import NotFound from "./pages/NotFound";
 
-// ---------------- QUERY CLIENT ----------------
 const queryClient = new QueryClient();
 
-// ---------------- LAYOUT (INLINE) ----------------
-function Layout() {
-  return (
-    <div>
-      {/* Navbar / Sidebar can go here */}
-      <Outlet />
-    </div>
-  );
-}
-
-// ---------------- APP ----------------
-function App() {
+export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -55,13 +43,13 @@ function App() {
 
         <BrowserRouter>
           <Routes>
-            {/* PUBLIC ROUTES */}
+            {/* ---------- PUBLIC ROUTES ---------- */}
             <Route path="/" element={<Splash />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/role-selection" element={<RoleSelection />} />
 
-            {/* ROUTES WITH LAYOUT */}
+            {/* ---------- ROUTES WITH LAYOUT ---------- */}
             <Route element={<Layout />}>
               <Route path="/dashboard-patient" element={<DashboardPatient />} />
               <Route path="/dashboard-doctor" element={<DashboardDoctor />} />
@@ -97,7 +85,7 @@ function App() {
               />
             </Route>
 
-            {/* FALLBACK */}
+            {/* ---------- FALLBACK ---------- */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
@@ -105,15 +93,5 @@ function App() {
     </QueryClientProvider>
   );
 }
-
-// ---------------- ROOT RENDER (SAME FILE) ----------------
-const rootElement = document.getElementById("root");
-
-if (rootElement) {
-  createRoot(rootElement).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
-}
+createRoot(document.getElementById("root")!).render(<App />);
 
