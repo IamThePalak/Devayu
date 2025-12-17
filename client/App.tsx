@@ -14,6 +14,10 @@ import RoleSelection from "./pages/RoleSelection";
 import DashboardPatient from "./pages/DashboardPatient";
 import DashboardDoctor from "./pages/DashboardDoctor";
 import DashboardPharma from "./pages/DashboardPharma";
+import AppointmentsPatient from "./pages/AppointmentsPatient";
+import HealthRecords from "./pages/HealthRecords";
+import Pharmacy from "./pages/Pharmacy";
+import Profile from "./pages/Profile";
 import Placeholder from "./pages/Placeholder";
 import NotFound from "./pages/NotFound";
 
@@ -37,19 +41,19 @@ const App = () => (
             <Route path="/dashboard-doctor" element={<DashboardDoctor />} />
             <Route path="/dashboard-pharma" element={<DashboardPharma />} />
 
-            <Route path="/appointments-patient" element={<Placeholder title="Appointments" />} />
-            <Route path="/appointments-doctor" element={<Placeholder title="Appointments" />} />
-            <Route path="/appointments-pharma" element={<Placeholder title="Appointments" />} />
+            <Route path="/appointments-patient" element={<AppointmentsPatient />} />
+            <Route path="/appointments-doctor" element={<Placeholder title="Doctor Appointments" />} />
+            <Route path="/appointments-pharma" element={<Placeholder title="Pharma Appointments" />} />
 
-            <Route path="/records-patient" element={<Placeholder title="Health Records" />} />
+            <Route path="/records-patient" element={<HealthRecords />} />
             <Route path="/records-doctor" element={<Placeholder title="Patient Records" />} />
             <Route path="/records-pharma" element={<Placeholder title="Order History" />} />
 
-            <Route path="/pharmacy" element={<Placeholder title="Pharmacy" />} />
+            <Route path="/pharmacy" element={<Pharmacy />} />
             <Route path="/consultations" element={<Placeholder title="Consultations" />} />
             <Route path="/inventory" element={<Placeholder title="Inventory" />} />
 
-            <Route path="/profile" element={<Placeholder title="Profile" />} />
+            <Route path="/profile" element={<Profile />} />
 
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
