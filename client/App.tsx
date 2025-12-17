@@ -1,5 +1,7 @@
 import "./global.css";
 
+import React from "react";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -34,7 +36,9 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-export default function App() {
+/* ---------------- APP COMPONENT ---------------- */
+
+function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -43,13 +47,13 @@ export default function App() {
 
         <BrowserRouter>
           <Routes>
-            {/* ---------- PUBLIC ROUTES ---------- */}
+            {/* Public Routes */}
             <Route path="/" element={<Splash />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/role-selection" element={<RoleSelection />} />
 
-            {/* ---------- ROUTES WITH LAYOUT ---------- */}
+            {/* Routes with Layout */}
             <Route element={<Layout />}>
               <Route path="/dashboard-patient" element={<DashboardPatient />} />
               <Route path="/dashboard-doctor" element={<DashboardDoctor />} />
@@ -85,7 +89,7 @@ export default function App() {
               />
             </Route>
 
-            {/* ---------- FALLBACK ---------- */}
+            {/* 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
@@ -93,5 +97,19 @@ export default function App() {
     </QueryClientProvider>
   );
 }
-createRoot(document.getElementById("root")!).render(<App />);
+
+/* ---------------- RENDER (ONLY ONCE) ---------------- */
+
+const container = document.getElementById("root");
+
+if (!container) {
+  throw new Error("Root container not found");
+}
+
+createRoot(container).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
 
