@@ -1,6 +1,5 @@
 import "./global.css";
 
-import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -36,73 +35,63 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
 
-        <BrowserRouter>
-          <Routes>
-            {/* PUBLIC ROUTES */}
-            <Route path="/" element={<Splash />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/role-selection" element={<RoleSelection />} />
+      <BrowserRouter>
+        <Routes>
+          {/* PUBLIC ROUTES */}
+          <Route path="/" element={<Splash />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/role-selection" element={<RoleSelection />} />
 
-            {/* ROUTES WITH LAYOUT */}
-            <Route element={<Layout />}>
-              <Route path="/dashboard-patient" element={<DashboardPatient />} />
-              <Route path="/dashboard-doctor" element={<DashboardDoctor />} />
-              <Route path="/dashboard-pharma" element={<DashboardPharma />} />
+          {/* ROUTES WITH LAYOUT */}
+          <Route element={<Layout />}>
+            <Route path="/dashboard-patient" element={<DashboardPatient />} />
+            <Route path="/dashboard-doctor" element={<DashboardDoctor />} />
+            <Route path="/dashboard-pharma" element={<DashboardPharma />} />
 
-              <Route
-                path="/appointments-patient"
-                element={<AppointmentsPatient />}
-              />
-              <Route
-                path="/appointments-doctor"
-                element={<AppointmentsDoctor />}
-              />
-              <Route
-                path="/appointments-pharma"
-                element={<AppointmentsPharma />}
-              />
+            <Route
+              path="/appointments-patient"
+              element={<AppointmentsPatient />}
+            />
+            <Route
+              path="/appointments-doctor"
+              element={<AppointmentsDoctor />}
+            />
+            <Route
+              path="/appointments-pharma"
+              element={<AppointmentsPharma />}
+            />
 
-              <Route path="/records-patient" element={<HealthRecords />} />
-              <Route path="/records-doctor" element={<RecordsDoctor />} />
-              <Route path="/records-pharma" element={<RecordsPharma />} />
+            <Route path="/records-patient" element={<HealthRecords />} />
+            <Route path="/records-doctor" element={<RecordsDoctor />} />
+            <Route path="/records-pharma" element={<RecordsPharma />} />
 
-              <Route path="/pharmacy" element={<Pharmacy />} />
-              <Route path="/profile" element={<Profile />} />
+            <Route path="/pharmacy" element={<Pharmacy />} />
+            <Route path="/profile" element={<Profile />} />
 
-              <Route
-                path="/consultations"
-                element={<Placeholder title="Consultations" />}
-              />
-              <Route
-                path="/inventory"
-                element={<Placeholder title="Inventory" />}
-              />
-            </Route>
+            <Route
+              path="/consultations"
+              element={<Placeholder title="Consultations" />}
+            />
+            <Route
+              path="/inventory"
+              element={<Placeholder title="Inventory" />}
+            />
+          </Route>
 
-            {/* FALLBACK */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-}
+          {/* FALLBACK */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
-// ✅ ROOT RENDER (NO main.tsx)
-const rootElement = document.getElementById("root");
+createRoot(document.getElementById("root")!).render(<App />);
 
-if (rootElement) {
-  createRoot(rootElement).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
-}
